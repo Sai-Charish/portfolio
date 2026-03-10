@@ -1,18 +1,19 @@
 import React from "react";
 import { ArrowDown, Minus } from "lucide-react";
-import picture from "../../public/img/profile.jpg";
 
 export default function About() {
   return (
-    <div className="border border-green-950 max-w-screen min-h-screen">
+    <div className="flex items-center flex-col  max-w-screen min-h-screen ">
       <div className="flex p-20 justify-around items-center min-w-screen">
         <div className="">
           <p className="tracking-widest">
             <Minus className="inline " strokeWidth={"1px"} />
             Hi there, I'm
           </p>
-          <h1 className="font-bold text-5xl mt-1">ANANTHOJI SAI CHARISH</h1>
-          <p className="font-light font-stretch-100% text-2xl">
+          <h1 className="font-bold font-[harmond] text-6xl mt-1">
+            ANANTHOJI SAI CHARISH
+          </h1>
+          <p className="font-light font-stretch-100% text-2xl  text-justify ">
             Full Stack Developer | ML Engineer | Data Scientst
           </p>
           <div className="border-l border-black pl-5 mt-5 ">
@@ -30,7 +31,7 @@ export default function About() {
           alt="photo"
         />
       </div>
-      <p>
+      <p className="">
         Scroll down <ArrowDown className="inline" />
       </p>
     </div>
