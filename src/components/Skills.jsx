@@ -4,49 +4,113 @@ const techStack = [
   {
     title: "Programming Languages",
     skills: [
-      { skillName: "Python", skillIcon: "python" },
-      { skillName: "Java", skillIcon: "java" },
-      { skillName: "C", skillIcon: "c" },
+      {
+        skillName: "Python",
+        skillIcon: "https://cdn.simpleicons.org/python/c9a86c",
+      },
+      {
+        skillName: "Java",
+        skillIcon: "https://skillicons.dev/icons?i=java",
+      },
+      { skillName: "C", skillIcon: "https://cdn.simpleicons.org/c/c9a86c" },
     ],
   },
   {
     title: "Machine Learning",
     skills: [
-      { skillName: "Numpy", skillIcon: "numpy" },
-      { skillName: "Pandas", skillIcon: "pandas" },
-      { skillName: "Scikit-Learn", skillIcon: "scikitlearn" },
-      { skillName: "Matplotlib", skillIcon: "matplotlib" },
+      {
+        skillName: "Numpy",
+        skillIcon: "https://cdn.simpleicons.org/numpy/78b48c",
+      },
+      {
+        skillName: "Pandas",
+        skillIcon: "https://cdn.simpleicons.org/pandas/78b48c",
+      },
+      {
+        skillName: "Scikit-Learn",
+        skillIcon: "https://cdn.simpleicons.org/scikitlearn/78b48c",
+      },
+      {
+        skillName: "Matplotlib",
+        skillIcon: "https://skillicons.dev/icons?i=matplotlib",
+      },
     ],
   },
   {
     title: "Databases",
     skills: [
-      { skillName: "MySQL", skillIcon: "mysql" },
-      { skillName: "MongoDB", skillIcon: "mongodb" },
-      { skillName: "PostgreSQL", skillIcon: "postgresql" },
+      {
+        skillName: "MySQL",
+        skillIcon: "https://cdn.simpleicons.org/mysql/6c94c9",
+      },
+      {
+        skillName: "MongoDB",
+        skillIcon: "https://cdn.simpleicons.org/mongodb/6c94c9",
+      },
+      {
+        skillName: "PostgreSQL",
+        skillIcon: "https://cdn.simpleicons.org/postgresql/6c94c9",
+      },
     ],
   },
   {
     title: "Web Technologies",
     skills: [
-      { skillName: "HTML", skillIcon: "html5" },
-      { skillName: "CSS", skillIcon: "css" },
-      { skillName: "Javascript", skillIcon: "javascript" },
-      { skillName: "React.js", skillIcon: "react" },
-      { skillName: "Next.js", skillIcon: "nextdotjs" },
-      { skillName: "Django", skillIcon: "django" },
-      { skillName: "DRF", skillIcon: "djangorestframework" },
-      { skillName: "Tailwind CSS", skillIcon: "tailwindcss" },
+      {
+        skillName: "HTML",
+        skillIcon: "https://cdn.simpleicons.org/html5/b478c9",
+      },
+      {
+        skillName: "CSS",
+        skillIcon: "https://cdn.simpleicons.org/css/b478c9",
+      },
+      {
+        skillName: "Javascript",
+        skillIcon: "https://cdn.simpleicons.org/javascript/b478c9",
+      },
+      {
+        skillName: "React.js",
+        skillIcon: "https://cdn.simpleicons.org/react/b478c9",
+      },
+      {
+        skillName: "Next.js",
+        skillIcon: "https://cdn.simpleicons.org/nextdotjs/b478c9",
+      },
+      {
+        skillName: "Django",
+        skillIcon: "https://cdn.simpleicons.org/django/b478c9",
+      },
+      {
+        skillName: "DRF",
+        skillIcon:
+          "https://skill-icons-fast.vercel.app/api/icons?i=djangorestframework",
+      },
+      {
+        skillName: "Tailwind CSS",
+        skillIcon: "https://cdn.simpleicons.org/tailwindcss/b478c9",
+      },
     ],
   },
   {
     title: "DevOps & Tools",
     skills: [
-      { skillName: "Linux", skillIcon: "linux" },
-      { skillName: "Docker", skillIcon: "docker" },
-      { skillName: "Kubernetes", skillIcon: "kubernetes" },
-      { skillName: "Git", skillIcon: "git" },
-      { skillName: "GitHub", skillIcon: "github" },
+      {
+        skillName: "Linux",
+        skillIcon: "https://cdn.simpleicons.org/linux/D98B8B",
+      },
+      {
+        skillName: "Docker",
+        skillIcon: "https://cdn.simpleicons.org/docker/D98B8Bb3",
+      },
+      {
+        skillName: "Kubernetes",
+        skillIcon: "https://cdn.simpleicons.org/kubernetes/D98B8B",
+      },
+      { skillName: "Git", skillIcon: "https://cdn.simpleicons.org/git/D98B8B" },
+      {
+        skillName: "GitHub",
+        skillIcon: "https://cdn.simpleicons.org/github/D98B8B",
+      },
     ],
   },
 ];

@@ -7,11 +7,8 @@ const details = ["About", "Experience", "Skills", "Projects", "Contact"];
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("About");
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-
     const onScroll = () => {
       setScrolled(window.scrollY > 20);
 
@@ -30,89 +27,19 @@ export default function Navbar() {
     };
 
     window.addEventListener("scroll", onScroll);
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const scrollTo = (item) => {
     const ele = document.getElementById(item.toLowerCase());
     if (ele) {
-      ele.scrollIntoView({ display: "block", behavior: "smooth" });
+      ele.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     }
   };
-
-  if (!mounted)
-    return (
-      <nav
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 100,
-          fontFamily: "'Georgia', serif",
-          background: "transparent",
-          borderBottom: "1px solid transparent",
-          transition: "all 0.5s ease",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            padding: "0 48px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            height: "72px",
-          }}
-        >
-          <div style={{ position: "relative" }}>
-            <span
-              style={{
-                fontSize: "22px",
-                fontWeight: "700",
-                letterSpacing: "0.12em",
-                color: "#f0ece4",
-                textTransform: "uppercase",
-              }}
-            >
-              A<span style={{ color: "#c9a86c" }}>S</span>C
-            </span>
-            <div
-              style={{
-                position: "absolute",
-                bottom: "-4px",
-                left: 0,
-                right: 0,
-                height: "1px",
-                background: "linear-gradient(90deg, #c9a86c, transparent)",
-              }}
-            />
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-            {details.map((item) => (
-              <button
-                key={item}
-                style={{
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: "8px 16px",
-                  fontSize: "10px",
-                  letterSpacing: "0.25em",
-                  textTransform: "uppercase",
-                  color:
-                    item === "About" ? "#c9a86c" : "rgba(240,236,228,0.45)",
-                }}
-              >
-                {item}
-              </button>
-            ))}
-          </div>
-          <ResBtn />
-        </div>
-      </nav>
-    );
 
   return (
     <nav
@@ -155,6 +82,7 @@ export default function Navbar() {
           >
             A<span style={{ color: "#c9a86c" }}>S</span>C
           </span>
+
           <div
             style={{
               position: "absolute",
@@ -167,7 +95,7 @@ export default function Navbar() {
           />
         </div>
 
-        {/* Nav links */}
+        {/* Nav Links */}
         <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
           {details.map((item) => (
             <button
@@ -195,6 +123,7 @@ export default function Navbar() {
               }}
             >
               {item}
+
               {active === item && (
                 <span
                   style={{
