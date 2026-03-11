@@ -1,6 +1,16 @@
 "use client";
 import { useState, useEffect } from "react";
 
+const TECH_CHIPS = [
+  "Python",
+  "Java",
+  "Django",
+  "React.js",
+  "Docker",
+  "Kubernetes",
+  "ML",
+];
+
 export default function About() {
   const [loaded, setLoaded] = useState(false);
 
@@ -10,160 +20,54 @@ export default function About() {
   }, []);
 
   return (
-    <div
-      style={{
-        fontFamily: "'Georgia', serif",
-        background: "#0a0a0a",
-        minHeight: "100vh",
-        color: "#f0ece4",
-        overflow: "hidden",
-        position: "relative",
-        paddingTop: "8rem",
-      }}
-    >
-      {/* Accent line top */}
+    <div className="font-serif bg-[#0a0a0a] text-[#f0ece4] overflow-hidden relative pt-28 md:pt-32">
+      {/* Accent line */}
       <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: "2px",
-          background:
-            "linear-gradient(90deg, transparent, #c9a86c, transparent)",
-          opacity: loaded ? 1 : 0,
-          transition: "opacity 1s ease 0.2s",
-        }}
+        className={`absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r from-transparent via-[#c9a86c] to-transparent transition-opacity duration-1000 delay-200 ${loaded ? "opacity-100" : "opacity-0"}`}
       />
 
-      {/* Decorative circle */}
+      {/* Decorative circles */}
       <div
-        style={{
-          position: "absolute",
-          right: "-180px",
-          top: "-180px",
-          width: "520px",
-          height: "520px",
-          borderRadius: "50%",
-          border: "1px solid rgba(201,168,108,0.15)",
-          opacity: loaded ? 1 : 0,
-          transition: "opacity 1.5s ease 0.5s",
-        }}
+        className={`absolute -right-44 -top-44 w-130 h-130 rounded-full border border-[#c9a86c]/15 pointer-events-none transition-opacity duration-1500 delay-500 ${loaded ? "opacity-100" : "opacity-0"}`}
       />
       <div
-        style={{
-          position: "absolute",
-          right: "-120px",
-          top: "-120px",
-          width: "380px",
-          height: "380px",
-          borderRadius: "50%",
-          border: "1px solid rgba(201,168,108,0.08)",
-          opacity: loaded ? 1 : 0,
-          transition: "opacity 1.5s ease 0.7s",
-        }}
+        className={`absolute -right-28 -top-28 w-95 h-95 rounded-full border border-[#c9a86c]/08 pointer-events-none transition-opacity duration-1500 delay-700 ${loaded ? "opacity-100" : "opacity-0"}`}
       />
 
-      <div
-        style={{
-          position: "relative",
-          zIndex: 1,
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "0 48px",
-        }}
-      >
-        {/* Hero section */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 380px",
-            gap: "80px",
-            alignItems: "center",
-            minHeight: "calc(100vh - 130px)",
-            paddingBottom: "80px",
-          }}
-        >
+      <div className="relative z-10 max-w-300 mx-auto px-6 md:px-12">
+        {/* Hero grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-12 lg:gap-20 items-center min-h-[calc(100vh-130px)] pb-20">
           {/* Left: Text */}
           <div>
             {/* Eyebrow */}
             <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "16px",
-                marginBottom: "32px",
-                opacity: loaded ? 1 : 0,
-                transform: loaded ? "none" : "translateX(-20px)",
-                transition: "all 0.9s ease 0.3s",
-              }}
+              className={`flex items-center gap-4 mb-8 transition-all duration-900 delay-300 ${loaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-5"}`}
             >
-              <div
-                style={{ width: "40px", height: "1px", background: "#c9a86c" }}
-              />
-              <span
-                style={{
-                  fontSize: "11px",
-                  letterSpacing: "0.3em",
-                  color: "#c9a86c",
-                  textTransform: "uppercase",
-                }}
-              >
+              <div className="w-10 h-px bg-[#c9a86c]" />
+              <span className="text-[11px] tracking-[0.3em] text-[#c9a86c] uppercase">
                 Hi there, I'm
               </span>
             </div>
 
             {/* Name */}
             <h1
-              style={{
-                fontSize: "clamp(42px, 5vw, 72px)",
-                fontWeight: "700",
-                lineHeight: "1.0",
-                letterSpacing: "-0.02em",
-                margin: "0 0 24px",
-                opacity: loaded ? 1 : 0,
-                transform: loaded ? "none" : "translateY(30px)",
-                transition: "all 1s ease 0.5s",
-              }}
+              className={`text-[clamp(42px,5vw,72px)] font-bold leading-none tracking-tight mb-6 transition-all duration-1000 delay-500 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             >
-              <span style={{ display: "block" }}>ANANTHOJI</span>
-              <span style={{ display: "block", color: "#c9a86c" }}>
-                SAI CHARISH
-              </span>
+              <span className="block">ANANTHOJI</span>
+              <span className="block text-[#c9a86c]">SAI CHARISH</span>
             </h1>
 
             {/* Role */}
             <p
-              style={{
-                fontSize: "13px",
-                letterSpacing: "0.25em",
-                color: "rgba(240,236,228,0.45)",
-                textTransform: "uppercase",
-                marginBottom: "48px",
-                opacity: loaded ? 1 : 0,
-                transform: loaded ? "none" : "translateY(20px)",
-                transition: "all 1s ease 0.7s",
-              }}
+              className={`text-[13px] tracking-[0.25em] text-[#f0ece4]/45 uppercase mb-12 transition-all duration-1000 delay-700 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
             >
-              Full Stack Developer &nbsp;·&nbsp; ML Engineer &nbsp;·&nbsp; Data
+              Full Stack Developer&nbsp;·&nbsp;ML Engineer&nbsp;·&nbsp;Data
               Scientist
             </p>
 
             {/* Bio */}
             <p
-              style={{
-                fontSize: "16px",
-                lineHeight: "1.9",
-                color: "rgba(240,236,228,0.6)",
-                maxWidth: "520px",
-                fontStyle: "italic",
-                borderLeft: "2px solid #c9a86c",
-                paddingLeft: "24px",
-                marginBottom: "60px",
-                opacity: loaded ? 1 : 0,
-                transform: loaded ? "none" : "translateY(20px)",
-                transition: "all 1s ease 0.9s",
-              }}
+              className={`text-base leading-[1.9] text-[#f0ece4]/60 max-w-130 italic border-l-2 border-[#c9a86c] pl-6 mb-14 transition-all duration-1000 delay-900 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
             >
               B.Tech graduate in AI &amp; ML with hands-on experience building
               end-to-end machine learning pipelines, REST APIs, and
@@ -173,45 +77,12 @@ export default function About() {
 
             {/* Tech chips */}
             <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: "10px",
-                opacity: loaded ? 1 : 0,
-                transform: loaded ? "none" : "translateY(20px)",
-                transition: "all 1s ease 1.1s",
-              }}
+              className={`flex flex-wrap gap-2.5 transition-all duration-1000 delay-1100 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}
             >
-              {[
-                "Python",
-                "Java",
-                "Django",
-                "React.js",
-                "Docker",
-                "Kubernetes",
-                "ML",
-              ].map((tech) => (
+              {TECH_CHIPS.map((tech) => (
                 <span
                   key={tech}
-                  style={{
-                    padding: "6px 16px",
-                    fontSize: "10px",
-                    letterSpacing: "0.2em",
-                    textTransform: "uppercase",
-                    border: "1px solid rgba(201,168,108,0.3)",
-                    color: "rgba(240,236,228,0.5)",
-                    borderRadius: "2px",
-                    transition: "all 0.3s",
-                    cursor: "default",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.borderColor = "#c9a86c";
-                    e.target.style.color = "#c9a86c";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.borderColor = "rgba(201,168,108,0.3)";
-                    e.target.style.color = "rgba(240,236,228,0.5)";
-                  }}
+                  className="px-4 py-1.5 text-[10px] tracking-[0.2em] uppercase border border-[#c9a86c]/30 text-[#f0ece4]/50 rounded-sm transition-all duration-300 cursor-default hover:border-[#c9a86c] hover:text-[#c9a86c]"
                 >
                   {tech}
                 </span>
@@ -221,91 +92,28 @@ export default function About() {
 
           {/* Right: Image */}
           <div
-            style={{
-              opacity: loaded ? 1 : 0,
-              transform: loaded ? "none" : "translateX(30px)",
-              transition: "all 1.2s ease 0.6s",
-              position: "relative",
-            }}
+            className={`transition-all duration-1200 delay-600 ${loaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"} relative max-w-95 mx-auto lg:mx-0 w-full`}
           >
-            {/* Decorative frame */}
-            <div
-              style={{
-                position: "absolute",
-                inset: "-12px",
-                border: "1px solid rgba(201,168,108,0.2)",
-                borderRadius: "4px",
-                zIndex: 0,
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                inset: "-6px",
-                border: "1px solid rgba(201,168,108,0.1)",
-                borderRadius: "4px",
-                zIndex: 0,
-              }}
-            />
+            {/* Decorative frames */}
+            <div className="absolute -inset-3 border border-[#c9a86c]/20 rounded-sm z-0" />
+            <div className="absolute -inset-1.5 border border-[#c9a86c]/10 rounded-sm z-0" />
 
             <img
               src="/img/profile.jpg"
               alt="Ananthoji Sai Charish"
-              style={{
-                width: "100%",
-                aspectRatio: "3/4",
-                objectFit: "cover",
-                borderRadius: "4px",
-                display: "block",
-                position: "relative",
-                zIndex: 1,
-                filter: "grayscale(20%) contrast(1.05)",
-              }}
+              className="w-full aspect-3/4 object-cover rounded-sm relative z-10"
+              style={{ filter: "grayscale(20%) contrast(1.05)" }}
             />
 
-            {/* Gold tint overlay */}
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                borderRadius: "4px",
-                zIndex: 2,
-                background:
-                  "linear-gradient(160deg, rgba(201,168,108,0.05) 0%, transparent 60%)",
-                pointerEvents: "none",
-              }}
-            />
+            {/* Gold overlay */}
+            <div className="absolute inset-0 rounded-sm z-20 pointer-events-none bg-linear-to-br from-[#c9a86c]/05 to-transparent" />
 
             {/* Tag */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: "20px",
-                left: "-20px",
-                zIndex: 3,
-                background: "#0a0a0a",
-                border: "1px solid rgba(201,168,108,0.3)",
-                padding: "10px 16px",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "9px",
-                  letterSpacing: "0.3em",
-                  color: "#c9a86c",
-                  textTransform: "uppercase",
-                }}
-              >
+            <div className="absolute bottom-5 -left-5 z-30 bg-[#0a0a0a] border border-[#c9a86c]/30 px-4 py-2.5">
+              <div className="text-[9px] tracking-[0.3em] text-[#c9a86c] uppercase">
                 Available for
               </div>
-              <div
-                style={{
-                  fontSize: "12px",
-                  letterSpacing: "0.1em",
-                  color: "#f0ece4",
-                  marginTop: "2px",
-                }}
-              >
+              <div className="text-[12px] tracking-widest text-[#f0ece4] mt-0.5">
                 Opportunities
               </div>
             </div>
@@ -314,34 +122,12 @@ export default function About() {
 
         {/* Scroll indicator */}
         <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "8px",
-            opacity: loaded ? 0.4 : 0,
-            transition: "opacity 1s ease 1.5s",
-            margin: "1rem",
-          }}
+          className={`flex flex-col items-center gap-2 transition-opacity duration-1000 delay-1500 mb-4 ${loaded ? "opacity-40" : "opacity-0"}`}
         >
-          <span
-            style={{
-              fontSize: "9px",
-              letterSpacing: "0.35em",
-              textTransform: "uppercase",
-              color: "#c9a86c",
-            }}
-          >
+          <span className="text-[9px] tracking-[0.35em] uppercase text-[#c9a86c]">
             Scroll
           </span>
-          <div
-            style={{
-              width: "1px",
-              height: "40px",
-              background: "linear-gradient(to bottom, #c9a86c, transparent)",
-              animation: "pulse 2s ease-in-out infinite",
-            }}
-          />
+          <div className="w-px h-10 bg-linear-to-b from-[#c9a86c] to-transparent animate-[pulse_2s_ease-in-out_infinite]" />
         </div>
       </div>
 

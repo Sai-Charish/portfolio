@@ -8,10 +8,7 @@ const techStack = [
         skillName: "Python",
         skillIcon: "https://cdn.simpleicons.org/python/c9a86c",
       },
-      {
-        skillName: "Java",
-        skillIcon: "https://skillicons.dev/icons?i=java",
-      },
+      { skillName: "Java", skillIcon: "https://skillicons.dev/icons?i=java" },
       { skillName: "C", skillIcon: "https://cdn.simpleicons.org/c/c9a86c" },
     ],
   },
@@ -60,10 +57,7 @@ const techStack = [
         skillName: "HTML",
         skillIcon: "https://cdn.simpleicons.org/html5/b478c9",
       },
-      {
-        skillName: "CSS",
-        skillIcon: "https://cdn.simpleicons.org/css/b478c9",
-      },
+      { skillName: "CSS", skillIcon: "https://cdn.simpleicons.org/css/b478c9" },
       {
         skillName: "Javascript",
         skillIcon: "https://cdn.simpleicons.org/javascript/b478c9",
@@ -100,7 +94,7 @@ const techStack = [
       },
       {
         skillName: "Docker",
-        skillIcon: "https://cdn.simpleicons.org/docker/D98B8Bb3",
+        skillIcon: "https://cdn.simpleicons.org/docker/D98B8B",
       },
       {
         skillName: "Kubernetes",
@@ -116,73 +110,34 @@ const techStack = [
 ];
 
 const categoryAccents = [
-  "#c9a86cb3", // gold
-  "#78b48cb3", // sage
-  "#6c94c9b3", // steel blue
-  "#b478c9b3", // mauve
-  "#D98B8Bb3", // dusty rose
+  "#c9a86cb3",
+  "#78b48cb3",
+  "#6c94c9b3",
+  "#b478c9b3",
+  "#D98B8Bb3",
 ];
 
 export default function Skills() {
   return (
-    <div
-      style={{
-        fontFamily: "'Georgia', serif",
-        background: "#0a0a0a",
-        minHeight: "100vh",
-        color: "#f0ece4",
-        padding: "120px 0 80px",
-      }}
-    >
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 48px" }}>
+    <div className="font-serif bg-[#0a0a0a] min-h-screen text-[#f0ece4] py-28 md:py-30">
+      <div className="max-w-300 mx-auto px-6 md:px-12">
         {/* Section header */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "20px",
-            marginBottom: "72px",
-          }}
-        >
-          <div
-            style={{ width: "40px", height: "1px", background: "#c9a86c" }}
-          />
-          <span
-            style={{
-              fontSize: "10px",
-              letterSpacing: "0.35em",
-              textTransform: "uppercase",
-              color: "#c9a86c",
-            }}
-          >
+        <div className="flex items-center gap-5 mb-18">
+          <div className="w-10 h-px bg-[#c9a86c]" />
+          <span className="text-[10px] tracking-[0.35em] uppercase text-[#c9a86c]">
             Skills
           </span>
-          <div
-            style={{
-              flex: 1,
-              height: "1px",
-              background: "rgba(201,168,108,0.1)",
-            }}
-          />
+          <div className="flex-1 h-px bg-[#c9a86c]/10" />
         </div>
 
-        <h2
-          style={{
-            fontSize: "clamp(32px, 4vw, 52px)",
-            fontWeight: "700",
-            letterSpacing: "-0.02em",
-            margin: "0 0 80px",
-            color: "#f0ece4",
-            lineHeight: 1.1,
-          }}
-        >
+        <h2 className="text-[clamp(32px,4vw,52px)] font-bold tracking-tight leading-[1.1] mb-20 text-[#f0ece4]">
           What I work
           <br />
-          <span style={{ color: "#c9a86c" }}>with.</span>
+          <span className="text-[#c9a86c]">with.</span>
         </h2>
 
         {/* Category rows */}
-        <div style={{ borderTop: "1px solid rgba(240,236,228,0.05)" }}>
+        <div className="border-t border-[#f0ece4]/05">
           {techStack.map((category, i) => (
             <CategoryRow
               key={i}
@@ -194,18 +149,9 @@ export default function Skills() {
         </div>
 
         {/* Footer note */}
-        <p
-          style={{
-            marginTop: "48px",
-            fontSize: "11px",
-            letterSpacing: "0.2em",
-            color: "rgba(240,236,228,0.2)",
-            textTransform: "uppercase",
-            textAlign: "right",
-          }}
-        >
-          {techStack.reduce((acc, c) => acc + c.skills.length, 0)} technologies
-          &nbsp;·&nbsp; {new Date().getFullYear()}
+        <p className="mt-12 text-[11px] tracking-[0.2em] text-[#f0ece4]/20 uppercase text-right">
+          {techStack.reduce((acc, c) => acc + c.skills.length, 0)}{" "}
+          technologies&nbsp;·&nbsp;{new Date().getFullYear()}
         </p>
       </div>
     </div>

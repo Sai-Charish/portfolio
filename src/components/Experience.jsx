@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { ExperienceCard } from "./ExperienceCard";
 
 const experiences = [
@@ -32,90 +31,34 @@ const experiences = [
 ];
 
 export default function Experience() {
-  const [active, setActive] = useState(0);
-
   return (
-    <div
-      style={{
-        fontFamily: "'Georgia', serif",
-        background: "#0d0d0d",
-        minHeight: "100vh",
-        color: "#f0ece4",
-        padding: "120px 0 80px",
-        position: "relative",
-      }}
-    >
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 48px" }}>
+    <div className="font-serif bg-[#0d0d0d] min-h-screen text-[#f0ece4] py-28 md:py-30 relative">
+      <div className="max-w-300 mx-auto px-6 md:px-12">
         {/* Section header */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "20px",
-            marginBottom: "72px",
-          }}
-        >
-          <div
-            style={{ width: "40px", height: "1px", background: "#c9a86c" }}
-          />
-          <span
-            style={{
-              fontSize: "10px",
-              letterSpacing: "0.35em",
-              textTransform: "uppercase",
-              color: "#c9a86c",
-            }}
-          >
+        <div className="flex items-center gap-5 mb-18">
+          <div className="w-10 h-px bg-[#c9a86c]" />
+          <span className="text-[10px] tracking-[0.35em] uppercase text-[#c9a86c]">
             Experience
           </span>
-          <div
-            style={{
-              flex: 1,
-              height: "1px",
-              background: "rgba(201,168,108,0.1)",
-            }}
-          />
+          <div className="flex-1 h-px bg-[#c9a86c]/10" />
         </div>
 
-        <h2
-          style={{
-            fontSize: "clamp(32px, 4vw, 52px)",
-            fontWeight: "700",
-            letterSpacing: "-0.02em",
-            margin: "0 0 64px",
-            color: "#f0ece4",
-            lineHeight: 1.1,
-          }}
-        >
+        <h2 className="text-[clamp(32px,4vw,52px)] font-bold tracking-tight leading-[1.1] mb-16 text-[#f0ece4]">
           Where I've
           <br />
-          <span style={{ color: "#c9a86c" }}>worked.</span>
+          <span className="text-[#c9a86c]">worked.</span>
         </h2>
 
         {/* Cards */}
-        <div
-          style={{
-            overflow: "hidden",
-          }}
-        >
+        <div>
           {experiences.map((exp, i) => (
             <ExperienceCard key={i} exp={exp} index={i} />
           ))}
         </div>
 
         {/* Footer note */}
-        <p
-          style={{
-            marginTop: "40px",
-            fontSize: "11px",
-            letterSpacing: "0.2em",
-            color: "rgba(240,236,228,0.2)",
-            textTransform: "uppercase",
-            textAlign: "right",
-          }}
-        >
-          {experiences.length} positions &nbsp;·&nbsp;{" "}
-          {new Date().getFullYear()}
+        <p className="mt-10 text-[11px] tracking-[0.2em] text-[#f0ece4]/20 uppercase text-right">
+          {experiences.length} positions&nbsp;·&nbsp;{new Date().getFullYear()}
         </p>
       </div>
     </div>

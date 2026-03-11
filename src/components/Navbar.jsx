@@ -2,148 +2,120 @@
 import { useState, useEffect } from "react";
 import ResBtn from "./ResBtn";
 
-const details = ["About", "Experience", "Skills", "Projects", "Contact"];
+const NAV_ITEMS = ["About", "Experience", "Skills", "Projects", "Contact"];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("About");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 20);
-
       if (window.scrollY < 50) {
         setActive("About");
         return;
       }
-
-      for (const item of [...details].reverse()) {
-        const ele = document.getElementById(item.toLowerCase());
-        if (ele && window.scrollY >= ele.offsetTop - 120) {
+      for (const item of [...NAV_ITEMS].reverse()) {
+        const el = document.getElementById(item.toLowerCase());
+        if (el && window.scrollY >= el.offsetTop - 120) {
           setActive(item);
           break;
         }
       }
     };
-
     window.addEventListener("scroll", onScroll);
-
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const scrollTo = (item) => {
-    const ele = document.getElementById(item.toLowerCase());
-    if (ele) {
-      ele.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+    document
+      .getElementById(item.toLowerCase())
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setMenuOpen(false);
   };
 
   return (
-    <nav
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 100,
-        fontFamily: "'Georgia', serif",
-        background: scrolled ? "rgba(10,10,10,0.92)" : "transparent",
-        backdropFilter: scrolled ? "blur(8px)" : "none",
-        borderBottom: scrolled
-          ? "1px solid rgba(201,168,108,0.15)"
-          : "1px solid transparent",
-        transition: "all 0.5s ease",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "0 48px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          height: "72px",
-        }}
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 font-serif transition-all duration-500
+          ${
+            scrolled
+              ? "bg-[#0a0a0a]/92 backdrop-blur-md border-b border-[#c9a86c]/15"
+              : "bg-transparent border-b border-transparent"
+          }`}
       >
-        {/* Logo */}
-        <div style={{ position: "relative" }}>
-          <span
-            style={{
-              fontSize: "22px",
-              fontWeight: "700",
-              letterSpacing: "0.12em",
-              color: "#f0ece4",
-              textTransform: "uppercase",
-            }}
+        <div className="max-w-300 mx-auto px-6 md:px-12 flex items-center justify-between h-18">
+          {/* Logo */}
+          <div className="relative">
+            <span className="text-[22px] font-bold tracking-[0.12em] text-[#f0ece4] uppercase">
+              A<span className="text-[#c9a86c]">S</span>C
+            </span>
+            <div className="absolute -bottom-1 left-0 right-0 h-px bg-linear-to-r from-[#c9a86c] to-transparent" />
+          </div>
+
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-1">
+            {NAV_ITEMS.map((item) => (
+              <button
+                key={item}
+                onClick={() => scrollTo(item)}
+                className={`relative px-4 py-2 text-[10px] tracking-[0.25em] uppercase transition-colors duration-300
+                  ${active === item ? "text-[#c9a86c]" : "text-[#f0ece4]/45 hover:text-[#f0ece4]/80"}`}
+              >
+                {item}
+                {active === item && (
+                  <span className="absolute bottom-0 left-4 right-4 h-px bg-[#c9a86c] animate-[slideIn_0.3s_ease_forwards]" />
+                )}
+              </button>
+            ))}
+          </div>
+
+          {/* Desktop Resume Button */}
+          <div className="hidden md:block">
+            <ResBtn />
+          </div>
+
+          {/* Mobile Hamburger */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden flex flex-col gap-1.25 p-2 text-[#f0ece4]/60 hover:text-[#c9a86c] transition-colors"
+            aria-label="Toggle menu"
           >
-            A<span style={{ color: "#c9a86c" }}>S</span>C
-          </span>
-
-          <div
-            style={{
-              position: "absolute",
-              bottom: "-4px",
-              left: 0,
-              right: 0,
-              height: "1px",
-              background: "linear-gradient(90deg, #c9a86c, transparent)",
-            }}
-          />
+            <span
+              className={`block w-5 h-px bg-current transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-1.5" : ""}`}
+            />
+            <span
+              className={`block w-5 h-px bg-current transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}
+            />
+            <span
+              className={`block w-5 h-px bg-current transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
+            />
+          </button>
         </div>
 
-        {/* Nav Links */}
-        <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-          {details.map((item) => (
-            <button
-              key={item}
-              onClick={() => scrollTo(item)}
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                padding: "8px 16px",
-                position: "relative",
-                fontSize: "10px",
-                letterSpacing: "0.25em",
-                textTransform: "uppercase",
-                color: active === item ? "#c9a86c" : "rgba(240,236,228,0.45)",
-                transition: "color 0.3s ease",
-              }}
-              onMouseEnter={(e) => {
-                if (active !== item)
-                  e.currentTarget.style.color = "rgba(240,236,228,0.8)";
-              }}
-              onMouseLeave={(e) => {
-                if (active !== item)
-                  e.currentTarget.style.color = "rgba(240,236,228,0.45)";
-              }}
-            >
-              {item}
-
-              {active === item && (
-                <span
-                  style={{
-                    position: "absolute",
-                    bottom: 0,
-                    left: "16px",
-                    right: "16px",
-                    height: "1px",
-                    background: "#c9a86c",
-                    animation: "slideIn 0.3s ease forwards",
-                  }}
-                />
-              )}
-            </button>
-          ))}
+        {/* Mobile Dropdown */}
+        <div
+          className={`md:hidden transition-all duration-300 overflow-hidden bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#c9a86c]/10
+          ${menuOpen ? "max-h-100 opacity-100" : "max-h-0 opacity-0"}`}
+        >
+          <div className="px-6 pb-6 pt-2 flex flex-col gap-1">
+            {NAV_ITEMS.map((item) => (
+              <button
+                key={item}
+                onClick={() => scrollTo(item)}
+                className={`text-left px-3 py-3 text-[10px] tracking-[0.25em] uppercase transition-colors border-b border-[#f0ece4]/05 last:border-0
+                  ${active === item ? "text-[#c9a86c]" : "text-[#f0ece4]/45"}`}
+              >
+                {item}
+              </button>
+            ))}
+            <div className="mt-3">
+              <ResBtn />
+            </div>
+          </div>
         </div>
-
-        {/* Resume Button */}
-        <ResBtn />
-      </div>
+      </nav>
 
       <style>{`
         @keyframes slideIn {
@@ -151,6 +123,6 @@ export default function Navbar() {
           to { transform: scaleX(1); }
         }
       `}</style>
-    </nav>
+    </>
   );
 }

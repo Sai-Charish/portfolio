@@ -1,8 +1,9 @@
 "use client";
 import { useState } from "react";
 
-export function SocialLink({ social, accent }) {
+export function SocialLink({ social }) {
   const [hovered, setHovered] = useState(false);
+
   return (
     <a
       href={social.url}
@@ -10,64 +11,45 @@ export function SocialLink({ social, accent }) {
       rel="noreferrer"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      className="flex items-center gap-4 px-6 py-5 border rounded-sm no-underline transition-all duration-300"
       style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "16px",
-        padding: "20px 24px",
-        border: `1px solid ${hovered ? "rgba(201,168,108,0.5)" : "rgba(240,236,228,0.07)"}`,
-        borderRadius: "3px",
+        borderColor: hovered
+          ? "rgba(201,168,108,0.5)"
+          : "rgba(240,236,228,0.07)",
         background: hovered ? "rgba(201,168,108,0.04)" : "transparent",
-        textDecoration: "none",
-        transition: "all 0.3s ease",
       }}
     >
       <img
-        src={`${social.icon}`}
+        src={social.icon}
         alt={social.label}
-        width="20"
-        height="20"
-        style={{
-          filter: hovered ? "none" : "grayscale(100%) brightness(0.5)",
-          transition: "filter 0.3s ease",
-        }}
+        width={20}
+        height={20}
+        className="transition-all duration-300"
+        style={{ filter: hovered ? "none" : "grayscale(100%) brightness(0.5)" }}
       />
-      <div style={{ flex: 1 }}>
+
+      <div className="flex-1">
         <div
-          style={{
-            fontSize: "9px",
-            letterSpacing: "0.3em",
-            textTransform: "uppercase",
-            color: hovered ? "#c9a86c" : "rgba(240,236,228,0.3)",
-            fontFamily: "'Georgia', serif",
-            marginBottom: "3px",
-            transition: "color 0.3s",
-          }}
+          className="text-[9px] tracking-[0.3em] uppercase mb-1 transition-colors duration-300"
+          style={{ color: hovered ? "#c9a86c" : "rgba(240,236,228,0.3)" }}
         >
           {social.label}
         </div>
         <div
-          style={{
-            fontSize: "13px",
-            color: hovered ? "#f0ece4" : "rgba(240,236,228,0.5)",
-            fontFamily: "'Georgia', serif",
-            letterSpacing: "0.03em",
-            transition: "color 0.3s",
-          }}
+          className="text-[13px] tracking-[0.03em] transition-colors duration-300"
+          style={{ color: hovered ? "#f0ece4" : "rgba(240,236,228,0.5)" }}
         >
           {social.handle}
         </div>
       </div>
+
       <svg
         width="12"
         height="12"
         viewBox="0 0 12 12"
         fill="none"
-        style={{
-          opacity: hovered ? 1 : 0,
-          transition: "opacity 0.3s",
-          transform: "rotate(-45deg)",
-        }}
+        className="transition-opacity duration-300"
+        style={{ opacity: hovered ? 1 : 0, transform: "rotate(-45deg)" }}
       >
         <line
           x1="0"

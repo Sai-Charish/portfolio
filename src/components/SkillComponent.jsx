@@ -4,50 +4,33 @@ import { useState } from "react";
 export function SkillPill({ skill, accent }) {
   const [hovered, setHovered] = useState(false);
 
+  // Extract hex from accent (e.g. "#c9a86cb3" → "#c9a86c")
+  const accentHex = accent.slice(0, 7);
+
   return (
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      className="flex items-center gap-2.5 px-4.5 py-2.5 border rounded-sm transition-all duration-300 cursor-default"
       style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "10px",
-        padding: "10px 18px",
-        border: `1px solid ${hovered ? accent : "rgba(240,236,228,0.08)"}`,
-        borderRadius: "3px",
-        background: hovered
-          ? `rgba(${accent
-              .match(/[\d.]+/g)
-              .slice(0, 3)
-              .join(",")},0.06)`
-          : "rgba(240,236,228,0.02)",
-        transition: "all 0.3s ease",
-        cursor: "default",
+        borderColor: hovered ? accentHex : "rgba(240,236,228,0.08)",
+        background: hovered ? `${accentHex}0f` : "rgba(240,236,228,0.02)",
       }}
     >
       <img
-        src={`${skill.skillIcon}`}
+        src={skill.skillIcon}
         alt={skill.skillName}
-        width="18"
-        height="18"
-        style={{
-          filter: hovered ? "none" : "grayscale(80%) brightness(0.6)",
-          transition: "filter 0.3s ease",
-        }}
+        width={18}
+        height={18}
+        className="transition-all duration-300"
+        style={{ filter: hovered ? "none" : "grayscale(80%) brightness(0.6)" }}
         onError={(e) => {
           e.target.style.display = "none";
         }}
       />
       <span
-        style={{
-          fontSize: "11px",
-          letterSpacing: "0.18em",
-          textTransform: "uppercase",
-          color: hovered ? "#f0ece4" : "rgba(240,236,228,0.4)",
-          fontFamily: "'Georgia', serif",
-          transition: "color 0.3s ease",
-          whiteSpace: "nowrap",
-        }}
+        className="text-[11px] tracking-[0.18em] uppercase whitespace-nowrap transition-colors duration-300"
+        style={{ color: hovered ? "#f0ece4" : "rgba(240,236,228,0.4)" }}
       >
         {skill.skillName}
       </span>
@@ -57,101 +40,56 @@ export function SkillPill({ skill, accent }) {
 
 export function CategoryRow({ category, index, categoryAccents }) {
   const accent = categoryAccents[index % categoryAccents.length];
+  const accentHex = accent.slice(0, 7);
   const isEven = index % 2 === 0;
 
   return (
-    <div
-      style={{
-        padding: "52px 0",
-        borderBottom: "1px solid rgba(240,236,228,0.05)",
-        position: "relative",
-      }}
-    >
-      {/* Ambient glow behind row */}
+    <div className="py-12 md:py-13 border-b border-[#f0ece4]/05 relative">
+      {/* Ambient glow */}
       <div
+        className="absolute top-1/2 -translate-y-1/2 w-75 h-75 rounded-full pointer-events-none"
         style={{
-          position: "absolute",
           [isEven ? "left" : "right"]: 0,
-          top: "50%",
-          transform: "translateY(-50%)",
-          width: "300px",
-          height: "300px",
-          borderRadius: "50%",
-          background: `radial-gradient(circle, ${accent.slice(0, 7)}1a 0%, transparent 50%)`,
-          pointerEvents: "none",
+          background: `radial-gradient(circle, ${accentHex}1a 0%, transparent 50%)`,
         }}
       />
 
       <div
-        style={{
-          display: "flex",
-          flexDirection: isEven ? "row" : "row-reverse",
-          alignItems: "center",
-          gap: "64px",
-          position: "relative",
-        }}
+        className={`flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-16 relative
+          ${isEven ? "md:flex-row" : "md:flex-row-reverse"}`}
       >
         {/* Category label */}
         <div
-          style={{
-            minWidth: "200px",
-            textAlign: isEven ? "right" : "left",
-          }}
+          className={`md:min-w-50 ${isEven ? "md:text-right" : "md:text-left"}`}
         >
           <div
-            style={{
-              fontSize: "9px",
-              letterSpacing: "0.35em",
-              textTransform: "uppercase",
-              color: accent,
-              marginBottom: "8px",
-              fontFamily: "'Georgia', serif",
-            }}
+            className="text-[9px] tracking-[0.35em] uppercase mb-2"
+            style={{ color: accentHex }}
           >
             0{index + 1}
           </div>
-          <h3
-            style={{
-              margin: 0,
-              fontSize: "20px",
-              fontWeight: "700",
-              letterSpacing: "-0.01em",
-              color: "#f0ece4",
-              fontFamily: "'Georgia', serif",
-              lineHeight: 1.2,
-            }}
-          >
+          <h3 className="m-0 text-[18px] md:text-[20px] font-bold tracking-tight text-[#f0ece4] leading-[1.2]">
             {category.title}
           </h3>
           <div
+            className="mt-3 h-px"
             style={{
-              marginTop: "12px",
-              height: "1px",
-              background: `linear-gradient(${isEven ? "to left" : "to right"}, ${accent}, transparent)`,
+              background: `linear-gradient(${isEven ? "to left" : "to right"}, ${accentHex}, transparent)`,
             }}
           />
         </div>
 
-        {/* Vertical divider */}
+        {/* Vertical divider — hidden on mobile */}
         <div
+          className="hidden md:block w-px self-stretch min-h-15 shrink-0"
           style={{
-            width: "1px",
-            alignSelf: "stretch",
-            minHeight: "60px",
-            background: `linear-gradient(to bottom, transparent, ${accent}, transparent)`,
-            flexShrink: 0,
+            background: `linear-gradient(to bottom, transparent, ${accentHex}, transparent)`,
           }}
         />
 
         {/* Skills */}
         <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "10px",
-            flex: 1,
-            justifyContent: isEven ? "flex-start" : "flex-end",
-          }}
+          className={`flex flex-wrap gap-2.5 flex-1 ${isEven ? "justify-start" : "md:justify-end"}`}
         >
           {category.skills.map((skill) => (
             <SkillPill key={skill.skillName} skill={skill} accent={accent} />

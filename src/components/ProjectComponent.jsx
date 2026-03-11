@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 
 const ArrowIcon = () => (
@@ -12,63 +13,42 @@ const ArrowIcon = () => (
   </svg>
 );
 
+const PLACEHOLDER_COLORS = ["#1a1508", "#081510", "#080d18", "#150810"];
+
 export function ProjectComponent({ project, index }) {
   const [hovered, setHovered] = useState(false);
-
-  const placeholderColors = ["#1a1508", "#081510", "#080d18", "#150810"];
-  const bgColor = placeholderColors[index % placeholderColors.length];
+  const bgColor = PLACEHOLDER_COLORS[index % PLACEHOLDER_COLORS.length];
 
   return (
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      className="border rounded-sm overflow-hidden flex flex-col bg-[#0f0f0f] transition-all duration-400"
       style={{
-        border: "1px solid rgba(201,168,108,0.12)",
-        borderRadius: "4px",
-        overflow: "hidden",
-        display: "flex",
-        flexDirection: "column",
-        transition:
-          "border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease",
         borderColor: hovered
           ? "rgba(201,168,108,0.4)"
           : "rgba(201,168,108,0.12)",
         transform: hovered ? "translateY(-4px)" : "none",
         boxShadow: hovered ? "0 20px 60px rgba(0,0,0,0.4)" : "none",
-        background: "#0f0f0f",
       }}
     >
-      {/* Image / Placeholder area */}
+      {/* Image area */}
       <div
-        style={{
-          height: "180px",
-          background: bgColor,
-          position: "relative",
-          overflow: "hidden",
-          borderBottom: "1px solid rgba(201,168,108,0.08)",
-        }}
+        className="h-45 relative overflow-hidden border-b border-[#c9a86c]/08"
+        style={{ background: bgColor }}
       >
         {project.img ? (
           <img
             src={project.img}
             alt={project.title}
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            className="w-full h-full object-cover"
           />
         ) : (
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            {/* Grid pattern */}
+          <div className="w-full h-full flex items-center justify-center">
             <svg
               width="100%"
               height="100%"
-              style={{ position: "absolute", inset: 0, opacity: 0.4 }}
+              className="absolute inset-0 opacity-40"
             >
               <defs>
                 <pattern
@@ -87,86 +67,33 @@ export function ProjectComponent({ project, index }) {
               </defs>
               <rect width="100%" height="100%" fill={`url(#grid-${index})`} />
             </svg>
-            <span
-              style={{
-                fontSize: "10px",
-                letterSpacing: "0.3em",
-                textTransform: "uppercase",
-                color: "rgba(201,168,108,0.3)",
-                fontFamily: "'Georgia', serif",
-                position: "relative",
-              }}
-            >
+            <span className="text-[10px] tracking-[0.3em] uppercase text-[#c9a86c]/30 relative">
               Preview
             </span>
           </div>
         )}
 
         {/* Index badge */}
-        <div
-          style={{
-            position: "absolute",
-            top: "16px",
-            left: "16px",
-            fontSize: "10px",
-            letterSpacing: "0.2em",
-            color: "rgba(201,168,108,0.5)",
-            fontFamily: "'Georgia', serif",
-          }}
-        >
+        <div className="absolute top-4 left-4 text-[10px] tracking-[0.2em] text-[#c9a86c]/50">
           0{index + 1}
         </div>
 
         {/* Date badge */}
-        <div
-          style={{
-            position: "absolute",
-            top: "14px",
-            right: "14px",
-            padding: "4px 10px",
-            border: "1px solid rgba(201,168,108,0.2)",
-            fontSize: "9px",
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-            color: "rgba(240,236,228,0.35)",
-            borderRadius: "2px",
-            fontFamily: "'Georgia', serif",
-            background: "rgba(10,10,10,0.6)",
-            backdropFilter: "blur(4px)",
-          }}
-        >
+        <div className="absolute top-3.5 right-3.5 px-2.5 py-1 border border-[#c9a86c]/20 text-[9px] tracking-[0.2em] uppercase text-[#f0ece4]/35 rounded-sm bg-[#0a0a0a]/60 backdrop-blur-sm">
           {project.from} — {project.to}
         </div>
 
-        {/* Hover overlay with link */}
+        {/* Hover overlay */}
         {project.link && (
           <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background: "rgba(10,10,10,0.7)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              opacity: hovered ? 1 : 0,
-              transition: "opacity 0.3s ease",
-            }}
+            className="absolute inset-0 flex items-center justify-center bg-[#0a0a0a]/70 transition-opacity duration-300"
+            style={{ opacity: hovered ? 1 : 0 }}
           >
             <a
               href={project.link}
               target="_blank"
               rel="noreferrer"
-              style={{
-                padding: "10px 24px",
-                border: "1px solid #c9a86c",
-                color: "#c9a86c",
-                fontSize: "10px",
-                letterSpacing: "0.25em",
-                textTransform: "uppercase",
-                textDecoration: "none",
-                fontFamily: "'Georgia', serif",
-                borderRadius: "2px",
-              }}
+              className="px-6 py-2.5 border border-[#c9a86c] text-[#c9a86c] text-[10px] tracking-[0.25em] uppercase no-underline rounded-sm hover:bg-[#c9a86c] hover:text-[#0a0a0a] transition-all duration-300"
             >
               View Project
             </a>
@@ -175,45 +102,16 @@ export function ProjectComponent({ project, index }) {
       </div>
 
       {/* Content */}
-      <div
-        style={{
-          padding: "28px",
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          gap: "16px",
-        }}
-      >
+      <div className="p-7 flex-1 flex flex-col gap-4">
         {/* Title row */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-          }}
-        >
-          <h3
-            style={{
-              margin: 0,
-              fontSize: "17px",
-              fontWeight: "700",
-              letterSpacing: "-0.01em",
-              color: "#f0ece4",
-              fontFamily: "'Georgia', serif",
-              lineHeight: 1.3,
-              flex: 1,
-            }}
-          >
+        <div className="flex justify-between items-start">
+          <h3 className="m-0 text-[17px] font-bold tracking-tight text-[#f0ece4] leading-[1.3] flex-1">
             {project.title}
           </h3>
           {project.link && (
             <span
-              style={{
-                marginLeft: "12px",
-                marginTop: "2px",
-                opacity: hovered ? 1 : 0.3,
-                transition: "opacity 0.3s",
-              }}
+              className="ml-3 mt-0.5 transition-opacity duration-300"
+              style={{ opacity: hovered ? 1 : 0.3 }}
             >
               <ArrowIcon />
             </span>
@@ -221,51 +119,14 @@ export function ProjectComponent({ project, index }) {
         </div>
 
         {/* Divider */}
-        <div
-          style={{
-            height: "1px",
-            background:
-              "linear-gradient(90deg, rgba(201,168,108,0.25), transparent)",
-          }}
-        />
+        <div className="h-px bg-linear-to-r from-[#c9a86c]/25 to-transparent" />
 
         {/* Description */}
-        <ul
-          style={{
-            margin: 0,
-            padding: 0,
-            listStyle: "none",
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-            flex: 1,
-          }}
-        >
+        <ul className="m-0 p-0 list-none flex flex-col gap-2.5 flex-1">
           {project.description.map((d, i) => (
-            <li
-              key={i}
-              style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}
-            >
-              <span
-                style={{
-                  marginTop: "8px",
-                  width: "3px",
-                  height: "3px",
-                  borderRadius: "50%",
-                  background: "#c9a86c",
-                  flexShrink: 0,
-                }}
-              />
-              <p
-                style={{
-                  margin: 0,
-                  fontSize: "13px",
-                  lineHeight: "1.8",
-                  color: "rgba(240,236,228,0.5)",
-                  fontFamily: "'Georgia', serif",
-                  fontStyle: "italic",
-                }}
-              >
+            <li key={i} className="flex gap-3 items-start">
+              <span className="mt-2 w-0.75 h-0.75 rounded-full bg-[#c9a86c] shrink-0" />
+              <p className="m-0 text-[13px] leading-[1.8] text-[#f0ece4]/50 italic">
                 {d}
               </p>
             </li>
@@ -273,36 +134,11 @@ export function ProjectComponent({ project, index }) {
         </ul>
 
         {/* Tech stack */}
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "8px",
-            marginTop: "8px",
-          }}
-        >
+        <div className="flex flex-wrap gap-2 mt-2">
           {project.techStack.map((tech) => (
             <span
               key={tech}
-              style={{
-                padding: "4px 10px",
-                fontSize: "9px",
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                border: "1px solid rgba(201,168,108,0.2)",
-                color: "rgba(240,236,228,0.4)",
-                borderRadius: "2px",
-                fontFamily: "'Georgia', serif",
-                transition: "all 0.3s",
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.borderColor = "#c9a86c";
-                e.target.style.color = "#c9a86c";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.borderColor = "rgba(201,168,108,0.2)";
-                e.target.style.color = "rgba(240,236,228,0.4)";
-              }}
+              className="px-2.5 py-1 text-[9px] tracking-[0.18em] uppercase border border-[#c9a86c]/20 text-[#f0ece4]/40 rounded-sm transition-all duration-300 hover:border-[#c9a86c] hover:text-[#c9a86c]"
             >
               {tech}
             </span>

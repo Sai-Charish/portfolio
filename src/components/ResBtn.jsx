@@ -1,37 +1,14 @@
 "use client";
 
-import React from "react";
-
 export default function ResBtn() {
   return (
     <a
       href="/resume.pdf"
-      download={"resume.pdf"}
-      style={{
-        padding: "9px 22px",
-        fontSize: "10px",
-        letterSpacing: "0.25em",
-        textTransform: "uppercase",
-        cursor: "pointer",
-        fontFamily: "inherit",
-        color: "#c9a86c",
-        background: "transparent",
-        border: "1px solid rgba(201,168,108,0.5)",
-        borderRadius: "2px",
-        transition: "all 0.3s ease",
-        position: "relative",
-        overflow: "hidden",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.background = "#c9a86c";
-        e.currentTarget.style.color = "#0a0a0a";
-        e.currentTarget.style.borderColor = "#c9a86c";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.background = "transparent";
-        e.currentTarget.style.color = "#c9a86c";
-        e.currentTarget.style.borderColor = "rgba(201,168,108,0.5)";
-      }}
+      download="resume.pdf"
+      className="inline-block px-5.5 py-2.25 text-[10px] tracking-[0.25em] uppercase
+        text-[#c9a86c] bg-transparent border border-[#c9a86c]/50 rounded-sm
+        transition-all duration-300 hover:bg-[#c9a86c] hover:text-[#0a0a0a] hover:border-[#c9a86c]
+        font-serif"
     >
       Résumé
     </a>
