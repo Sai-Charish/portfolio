@@ -9,11 +9,21 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <About />
-      <Experience />
-      <Skills />
-      <Projects />
-      <ContactMe />
+      <div id="about">
+        <About />
+      </div>
+      <div id="experience">
+        <Experience />
+      </div>
+      <div id="skills">
+        <Skills />
+      </div>
+      <div id="projects">
+        <Projects />
+      </div>
+      <div id="contact">
+        <ContactMe />
+      </div>
     </>
   );
 }

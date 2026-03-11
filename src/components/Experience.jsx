@@ -1,5 +1,6 @@
-import React from "react";
-import ExperienceCard from "./ExperienceCard";
+"use client";
+import { useState } from "react";
+import { ExperienceCard } from "./ExperienceCard";
 
 const experiences = [
   {
@@ -31,20 +32,92 @@ const experiences = [
 ];
 
 export default function Experience() {
+  const [active, setActive] = useState(0);
+
   return (
-    <div className="flex flex-col  min-h-screen  max-w-screen ">
-      {experiences.map((current, i) => (
-        <ExperienceCard
-          key={i}
-          organizationName={current.company}
-          Role={current.role}
-          type={current.type}
-          loc={current.location}
-          desciption={current.responsibilities}
-          From={current.from}
-          To={current.to}
-        />
-      ))}
+    <div
+      style={{
+        fontFamily: "'Georgia', serif",
+        background: "#0d0d0d",
+        minHeight: "100vh",
+        color: "#f0ece4",
+        padding: "120px 0 80px",
+        position: "relative",
+      }}
+    >
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 48px" }}>
+        {/* Section header */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "20px",
+            marginBottom: "72px",
+          }}
+        >
+          <div
+            style={{ width: "40px", height: "1px", background: "#c9a86c" }}
+          />
+          <span
+            style={{
+              fontSize: "10px",
+              letterSpacing: "0.35em",
+              textTransform: "uppercase",
+              color: "#c9a86c",
+            }}
+          >
+            Experience
+          </span>
+          <div
+            style={{
+              flex: 1,
+              height: "1px",
+              background: "rgba(201,168,108,0.1)",
+            }}
+          />
+        </div>
+
+        <h2
+          style={{
+            fontSize: "clamp(32px, 4vw, 52px)",
+            fontWeight: "700",
+            letterSpacing: "-0.02em",
+            margin: "0 0 64px",
+            color: "#f0ece4",
+            lineHeight: 1.1,
+          }}
+        >
+          Where I've
+          <br />
+          <span style={{ color: "#c9a86c" }}>worked.</span>
+        </h2>
+
+        {/* Cards */}
+        <div
+          style={{
+            overflow: "hidden",
+          }}
+        >
+          {experiences.map((exp, i) => (
+            <ExperienceCard key={i} exp={exp} index={i} />
+          ))}
+        </div>
+
+        {/* Footer note */}
+        <p
+          style={{
+            marginTop: "40px",
+            fontSize: "11px",
+            letterSpacing: "0.2em",
+            color: "rgba(240,236,228,0.2)",
+            textTransform: "uppercase",
+            textAlign: "right",
+          }}
+        >
+          {experiences.length} positions &nbsp;·&nbsp;{" "}
+          {new Date().getFullYear()}
+        </p>
+      </div>
     </div>
   );
 }
