@@ -29,7 +29,7 @@ const techStack = [
       },
       {
         skillName: "Matplotlib",
-        skillIcon: "https://skillicons.dev/icons?i=matplotlib",
+        skillIcon: "https://skill-icons-fast.vercel.app/api/icons?i=matplotlib",
       },
     ],
   },
